@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const {sequelize} = require('./../db/dbConnection');
+const {sequelize} = require('./../../db/dbConnection');
 
 const Role = sequelize.define('Role', {
     id: {
@@ -14,3 +14,5 @@ const Role = sequelize.define('Role', {
   }, {
     // Other model options go here
   });
+
+  module.exports = Role;

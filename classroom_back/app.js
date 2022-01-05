@@ -1,14 +1,30 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const {testDbConection} = require("./db/dbConnection")
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+//Db imports
+const {testDbConection} = require("./db/dbConnection")
+const syncDB = require('./db/syncDb')
+
+//Routes imports
+const authRoute = require('./api/auth/routes/authRoute')
+const handleUsersRoute = require('./api/auth/routes/handleUsersRoute')
+const classesRoute = require('./api/classes/routes/classesRoutes')
+const sessionRoutes = require('./api/classes/routes/sessionRoutes')
+
+// App configuration
+//syncDB()
+// require('./db/testData')
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.use('/api/v1/auth/',handleUsersRoute)
+app.use('/api/v1/auth/',authRoute)
+app.use('/api/v1/classes/',classesRoute)
+app.use('/api/v1/session/',sessionRoutes)
 
 if (testDbConection()) {
-    app.listen(process.env.PORT , () => {
+    app.listen(process.env.PORT ,async () => {
         console.log(`Example app listening at http://localhost:${process.env.PORT}`)
       })    
 }else{

@@ -1,9 +1,10 @@
 const { Sequelize } = require('sequelize');
+var sqlite    = require('sqlite3').sqlite
 
-const sequelize = new Sequelize({
-    dialect: process.env.DB_DIALECT,
-    storage: process.env.DB_HOST 
-  });
+const sequelize = new Sequelize('classroom','user','pass',{
+  dialect: 'sqlite',
+  storage: './db/classroom.sqlite'
+});
   
 async function testDbConection() {
   try {

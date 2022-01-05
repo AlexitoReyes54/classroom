@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const {sequelize} = require('./../db/dbConnection');
+const {sequelize} = require('./../../db/dbConnection');
 
 const ClassesInProgress = sequelize.define('Classes_In_Progress', {
     studentId: {
@@ -19,3 +19,4 @@ const ClassesInProgress = sequelize.define('Classes_In_Progress', {
     // Other model options go here
   });
   
+  module.exports = ClassesInProgress;

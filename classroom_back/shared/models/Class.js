@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const {sequelize} = require('./../db/dbConnection');
+const {sequelize} = require('./../../db/dbConnection');
 
 const Class = sequelize.define('Class', {
     id: {
@@ -18,3 +18,5 @@ const Class = sequelize.define('Class', {
   }, {
     // Other model options go here
   });
+
+module.exports = Class;
