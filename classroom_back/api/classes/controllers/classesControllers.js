@@ -1,12 +1,12 @@
 const asyncWrapper = require('./../../../shared/middlewares/async')
 const Class = require('./../../../shared/models/Class')
-const {adminGuard} = require('./../../../shared/middlewares/verifyRole')
+const {roleGuard} = require('./../../../shared/middlewares/verifyRole')
 
 
-const createClass = adminGuard(async (req, res) => {
+const createClass = roleGuard(async (req, res) => {
     const classSession = await Class.create(req.body.class)
     res.json({classSession})
-})
+},2)
 
 const getOneClass = asyncWrapper(async (req, res) => {
     const classSession = await Class.findOne({where:{id:req.params.id}})
@@ -24,7 +24,7 @@ const getAllClasses = asyncWrapper(async (req, res) => {
     res.json({classSession})
 })
 
-const updateClass = adminGuard(async (req, res) => {
+const updateClass = roleGuard(async (req, res) => {
     let {id,teacherId,name} = req.body.class
     const classSession = await Class.findOne({ where: { id } });
 
@@ -35,9 +35,9 @@ const updateClass = adminGuard(async (req, res) => {
     res.status(200).json({
         data:'updated'
     })
-})
+},2)
 
-const deleteClass = adminGuard(async (req, res) => {
+const deleteClass = roleGuard(async (req, res) => {
     const { toDeleteId } = req.body
     const deletedClass = await Class.destroy({where: {id:toDeleteId}});
 
@@ -48,7 +48,7 @@ const deleteClass = adminGuard(async (req, res) => {
     }else{
         res.status(404).json({data:'not found'})
     }
-})
+},2)
 
 
 

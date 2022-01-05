@@ -8,13 +8,14 @@ let {
     updateClass,
     deleteClass
 } = require('./../controllers/classesControllers')
+const validateJwt = require('./../../../shared/middlewares/validateJwt')
 
-router.get('/all',getAllClasses)
-router.get('/class/:classId',getOneClass)
-router.get('/teacher/:teacherId',getOneTeacherClasses)
-router.post('/create',createClass)
-router.put('/',updateClass)
-router.delete('/',deleteClass)
+router.get('/all',validateJwt,getAllClasses)
+router.get('/class/:classId',validateJwt,getOneClass)
+router.get('/teacher/:teacherId',validateJwt,getOneTeacherClasses)
+router.post('/create',validateJwt,createClass)
+router.put('/',validateJwt,updateClass)
+router.delete('/',validateJwt,deleteClass)
 
 
 module.exports = router;

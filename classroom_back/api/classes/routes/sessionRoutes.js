@@ -7,13 +7,13 @@ let {
     updateStudentSessions,
     deleteStudentSessions
 } = require('./../controllers/sessionsControlller')
+const validateJwt = require('./../../../shared/middlewares/validateJwt')
 
-
-router.post('/add',addStudentToClass)
-router.get('/class/:classId',getStudentsFromClass)
-router.get('/student/:studentId',getSessionsFromOneStudents)
-router.put('/update',updateStudentSessions)
-router.delete('/delete',deleteStudentSessions)
+router.post('/add',validateJwt,addStudentToClass)
+router.get('/class/:classId',validateJwt,getStudentsFromClass)
+router.get('/student/:studentId',validateJwt,getSessionsFromOneStudents)
+router.put('/update',validateJwt,updateStudentSessions)
+router.delete('/delete',validateJwt,deleteStudentSessions)
 
 
 module.exports = router;

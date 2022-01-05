@@ -8,8 +8,8 @@ const sendProperResponse = (res,data) => {
     }
 }
 
-const hasAdminPermission =  (req) =>{
-    if (req.headers.role === '2') {
+const identifyRole =  (reqRuestole,role) =>{
+    if (reqRuestole === role.toString()) {
         return true
     }else{
         return false
@@ -19,5 +19,5 @@ const hasAdminPermission =  (req) =>{
 
 module.exports = {
     sendProperResponse,
-    hasAdminPermission
+    identifyRole
 }

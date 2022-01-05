@@ -1,6 +1,6 @@
 const User = require('./../../../shared/models/User')
 const asyncWrapper = require('./../../../shared/middlewares/async')
-const { adminGuard } = require('../../../shared/middlewares/verifyRole');
+const { roleGuard } = require('../../../shared/middlewares/verifyRole');
 const { sendProperResponse } = require('../../../shared/helpers/handleData')
 
 const getAllTeachers = asyncWrapper(async (req, res) => {
@@ -23,7 +23,7 @@ const getOneTeacher = asyncWrapper(async (req, res) => {
     sendProperResponse(res,teacher)
 })
 
-const updateUser = adminGuard(async (req, res) => {
+const updateUser = roleGuard(async (req, res) => {
     const {name,password,id} = req.body.updatedUser
     const teacher = await User.findOne({ where: { id } });
 
@@ -34,9 +34,9 @@ const updateUser = adminGuard(async (req, res) => {
     res.status(200).json({
         data:'updated'
     })
-})
+},2)
 
-const deleteUser = adminGuard(async (req, res) => {
+const deleteUser = roleGuard(async (req, res) => {
     const { toDeleteId } = req.body
     const deletedUser = await User.destroy({where: {id:toDeleteId}});
 
@@ -48,7 +48,7 @@ const deleteUser = adminGuard(async (req, res) => {
         res.status(404).json({data:'not found'})
     }
 
-});
+},2);
 
 module.exports = {
     getAllTeachers,

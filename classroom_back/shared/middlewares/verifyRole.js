@@ -1,10 +1,10 @@
-const {hasAdminPermission} = require('../helpers/handleData') 
+const {identifyRole} = require('../helpers/handleData') 
 
-const adminGuard = (fn) => {
+const roleGuard = (fn,role) => {
     return async (req, res, next) => {
       try {
 
-       if (hasAdminPermission(req)) {
+       if (identifyRole(req.headers.role,role)) {
             await fn(req, res, next)
        }else{
            res.status(403).json({
@@ -18,8 +18,9 @@ const adminGuard = (fn) => {
     }
   }
 
+
  
   
   module.exports = {
-      adminGuard
+    roleGuard
     }
