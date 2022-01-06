@@ -8,6 +8,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,6 @@ import {MatMenuModule} from '@angular/material/menu';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports:[HeaderComponent]
+  exports:[HeaderComponent,HttpClientModule,BrowserModule]
 })
 export class AppModule { }

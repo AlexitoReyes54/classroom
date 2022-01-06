@@ -6,6 +6,10 @@ const Role = require('./../shared/models/Role')
 
 
 function syncDB() {
+
+    //User.hasMany(ClassesInProgress,{foreignKey:'userId'})
+    //Class.hasMany(ClassesInProgress,{foreignKey:'classId'})
+
     sequelize.sync({force:true})
     .then((res) => console.log("Sycncronized"))
     .catch(err => console.log(err))

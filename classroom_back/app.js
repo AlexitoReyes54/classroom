@@ -14,9 +14,18 @@ const sessionRoutes = require('./api/classes/routes/sessionRoutes')
 
 // App configuration
 //syncDB()
-// require('./db/testData')
+ // require('./db/testData')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+
+app.use("/", function(req, res, next){
+  console.log('pass');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', '*');
+    next();
+  });
 
 app.use('/api/v1/auth/',handleUsersRoute)
 app.use('/api/v1/auth/',authRoute)

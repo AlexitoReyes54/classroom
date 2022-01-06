@@ -3,6 +3,9 @@ const asyncWrapper = require('./../../../shared/middlewares/async')
 const { sendProperResponse } = require('../../../shared/helpers/handleData')
 const {generateToken} = require('./../../../shared/helpers/Jwt')
 
+
+
+  
 const createUser = asyncWrapper(async (req, res) => {
     const userNameExist = await User.findOne({where:{name:req.body.user.name}})
     if (userNameExist) {
@@ -14,18 +17,18 @@ const createUser = asyncWrapper(async (req, res) => {
 })
 
 const authenticateUser = asyncWrapper(async (req, res) => {
-    let { name, password} = req.body.user
+    let { name, password} = req.body
     const user = await User.findOne({where:{name,password}})
-    
+ 
     if (user){
          delete user.dataValues.password 
          delete user.dataValues.createdAt
          delete user.dataValues.updatedAt
          let token =  generateToken(user.id)
          user.dataValues.token = token
-        res.status(200).json({ credentials:user}) //user added
+        res.status(200).json(user) //user added
     } else{
-        res.status(404).json({data:'user not found'})
+        res.json({data:'user not found'})
     }
 
     

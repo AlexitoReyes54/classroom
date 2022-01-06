@@ -1,36 +1,29 @@
 <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Board">
         <div class="detailBoard">
-            <h1>Welcome to: Class name </h1>
+            <h1>Welcome to: {{className}} </h1>
         </div>
     </mat-tab>
-    <mat-tab label="Students">
+    <mat-tab label="Students" *ngIf="isATeacher">
         <div class="detailPeopleBtn">
-            <button mat-flat-button color="primary">
+            <button mat-flat-button color="primary" (click)="openDialog()">
                 Add student
-                <mat-icon aria-hidden="false" aria-label="Example home icon">person_add</mat-icon>
+                <mat-icon aria-hidden="false">person_add</mat-icon>
 
             </button>
         </div>
         
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
+        <table mat-table [dataSource]="listOFStudents" class="mat-elevation-z8">
           
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-              <th mat-header-cell *matHeaderCellDef> Id </th>
-              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            <ng-container matColumnDef="studentId">
+              <th mat-header-cell *matHeaderCellDef>Student Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.studentId}} </td>
             </ng-container>
           
-            <!-- Name Column -->
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef> Name </th>
               <td mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
-          
-          
           
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

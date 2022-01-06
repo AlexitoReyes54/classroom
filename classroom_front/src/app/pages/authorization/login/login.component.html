@@ -1,17 +1,17 @@
 
    
-<div class="loginContainer">
+<form class="loginContainer" [formGroup]="loginForm" (submit)="sendRequest()">
     <h1>Classroom </h1>
     <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput [formControl]="name">
+        <input matInput formControlName="name">
       </mat-form-field>
  
     <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput [formControl]="password">
+        <input matInput formControlName="password">
       </mat-form-field>
       <button  mat-flat-button color="primary">Log in</button>
-</div>
+</form>
       
     

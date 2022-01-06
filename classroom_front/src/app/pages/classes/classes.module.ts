@@ -10,12 +10,16 @@ import { DetailComponent } from './detail/detail.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import { AppModule } from 'src/app/app.module';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AddStudentComponent } from './add-student/add-student.component';
 
 @NgModule({
   declarations: [
     ClassesComponent,
     CardComponent,
     DetailComponent,
+    AddStudentComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatTabsModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
+    
   ],
   exports:[]
 })

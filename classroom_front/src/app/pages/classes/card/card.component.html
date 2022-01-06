@@ -1,6 +1,6 @@
 <mat-card class="card" >
-    <mat-card-title>Simple card</mat-card-title>
+    <mat-card-title>{{ data.name }}</mat-card-title>
     <mat-card-actions>
-        <button mat-flat-button color="primary">Go to Class</button>    
+        <button routerLink="detail/{{data.classId}}" mat-flat-button color="primary">Go to Class</button>    
     </mat-card-actions>
 </mat-card>
