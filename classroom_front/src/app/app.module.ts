@@ -20,9 +20,11 @@ import {MatMenuModule} from '@angular/material/menu';
     NoopAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[HeaderComponent]
 })
 export class AppModule { }
