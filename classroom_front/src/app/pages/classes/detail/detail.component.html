@@ -6,7 +6,11 @@
     </mat-tab>
     <mat-tab label="Students">
         <div class="detailPeopleBtn">
-            <button mat-flat-button color="primary">Add student</button>
+            <button mat-flat-button color="primary">
+                Add student
+                <mat-icon aria-hidden="false" aria-label="Example home icon">person_add</mat-icon>
+
+            </button>
         </div>
         
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

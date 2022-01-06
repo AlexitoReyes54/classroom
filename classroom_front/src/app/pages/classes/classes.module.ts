@@ -9,7 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { DetailComponent } from './detail/detail.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
-
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import {MatTableModule} from '@angular/material/table';
     MatCardModule,
     MatButtonModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ],
   exports:[]
 })

@@ -8,14 +8,21 @@
       </button>
 
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>dialpad</mat-icon>
-          <span>option 1</span>
+
+        <button mat-menu-item routerLink="home">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
         </button>
         
         <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>option 3</span>
+          <mat-icon>build</mat-icon>
+          <span>Admin management</span>
         </button>
+
+        <button mat-menu-item routerLink="auth">
+          <mat-icon>cancel</mat-icon>
+          <span>Sign-out</span>
+        </button>
+
       </mat-menu>
   </mat-toolbar>
