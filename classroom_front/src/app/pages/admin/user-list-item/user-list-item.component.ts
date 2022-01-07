@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { student } from '../../classes/interfaces/student';
+import { teacher } from '../interfaces/teacher';
 
 @Component({
   selector: 'app-user-list-item',
@@ -8,8 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class UserListItemComponent implements OnInit {
 
   constructor() { }
+  
+  @Input()
+  data!:teacher | student;
 
   ngOnInit(): void {
+    console.log(this.data);
+    
   }
 
+  
 }

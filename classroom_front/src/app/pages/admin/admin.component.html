@@ -7,12 +7,13 @@
 
             <h2>Teachers</h2><hr>
             <div class="usersList">
-                <app-user-list-item></app-user-list-item>
+                <app-teacher-list-item *ngFor="let teacher of teachers" [data]="teacher"></app-teacher-list-item>
             </div>
 
             <h2>Students</h2><hr>
             <div class="usersList">
-
+                <app-student-list-item *ngFor="let student of students" [data]="student"></app-student-list-item>
+                
             </div>
             
         </div>

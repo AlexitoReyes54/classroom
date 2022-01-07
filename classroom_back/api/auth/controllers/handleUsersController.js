@@ -5,7 +5,7 @@ const { sendProperResponse } = require('../../../shared/helpers/handleData')
 const {sequelize} = require('../../../db/dbConnection')
 
 const getAllTeachers = asyncWrapper(async (req, res) => {
-    const teachers = await User.findAll({ where: { roleId:1 } })
+    const teachers = await User.findAll({ attributes: [['id','teacherId'], 'name'],where: { roleId:1,roleId:2  } })
     sendProperResponse(res,teachers)
 })
 
