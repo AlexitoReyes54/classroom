@@ -30,16 +30,23 @@ const getOneStudent = asyncWrapper(async (req, res) => {
     sendProperResponse(res,student)
 })
 
+
+const getUser = asyncWrapper(async (req, res) => {
+    const student = await User.findOne({ attributes: ['id', 'name','password','roleId'], where: { id:req.params.id } })
+    res.status(201).json( student )
+})
+
+
 const getOneTeacher = asyncWrapper(async (req, res) => {
     const teacher = await User.findOne({ where: { roleId:3,id:req.params.id } })
     sendProperResponse(res,teacher)
 })
 
 const updateUser = roleGuard(async (req, res) => {
-    const {name,password,id} = req.body.updatedUser
-    const teacher = await User.findOne({ where: { id } });
+    const {name,password,id} = req.body
+    const user = await User.findOne({ where: { id } });
 
-    if (teacher) {
+    if (user) {
         await User.update({name,password},{where:{id}});
     }
 
@@ -69,5 +76,6 @@ module.exports = {
     getOneTeacher,
     updateUser,
     deleteUser,
-    getNotInClassStudents
+    getNotInClassStudents,
+    getUser
 }

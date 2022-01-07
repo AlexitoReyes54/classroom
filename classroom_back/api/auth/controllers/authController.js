@@ -7,11 +7,12 @@ const {generateToken} = require('./../../../shared/helpers/Jwt')
 
   
 const createUser = asyncWrapper(async (req, res) => {
-    const userNameExist = await User.findOne({where:{name:req.body.user.name}})
+    let {name , roleId, password} = req.body;
+    const userNameExist = await User.findOne({where:{name}})
     if (userNameExist) {
         res.send('the username exist')
     }{
-        const user = await User.create(req.body.user)
+        const user = await User.create({name , roleId, password})
         sendProperResponse(res,user)
     }
 })

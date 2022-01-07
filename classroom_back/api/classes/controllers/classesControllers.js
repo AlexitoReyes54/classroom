@@ -46,7 +46,7 @@ const getClassStudents = asyncWrapper(async (req, res) => {
 
 
 const getAllClasses = asyncWrapper(async (req, res) => {
-    const classSession = await Class.findAll()
+    const classSession = await Class.findAll({ attributes: ['id','teacherId', 'name'] })
     res.json(classSession)
 })
 

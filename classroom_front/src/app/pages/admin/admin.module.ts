@@ -8,9 +8,13 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import { UserListItemComponent } from './user-list-item/user-list-item.component';
 import {MatCardModule} from '@angular/material/card';
-import { AppModule } from 'src/app/app.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TeacherListItemComponent } from './teacher-list-item/teacher-list-item.component';
 import { StudentListItemComponent } from './student-list-item/student-list-item.component';
+import { UserFormComponent } from './user-form/user-form.component';
+import { ClassFormComponent } from './class-form/class-form.component';
+import { ClassListItemComponent } from './class-list-item/class-list-item.component';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,10 @@ import { StudentListItemComponent } from './student-list-item/student-list-item.
     ManagementComponent,
     UserListItemComponent,
     TeacherListItemComponent,
-    StudentListItemComponent
+    StudentListItemComponent,
+    UserFormComponent,
+    ClassFormComponent,
+    ClassListItemComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +33,8 @@ import { StudentListItemComponent } from './student-list-item/student-list-item.
     MatTabsModule,
     MatButtonModule,
     MatCardModule,
+    ReactiveFormsModule,
+    MatInputModule
     
   ]
 })

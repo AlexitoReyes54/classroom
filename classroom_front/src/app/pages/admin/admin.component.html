@@ -1,7 +1,7 @@
 <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Users management">
         <div class="Btnbox">
-            <button mat-flat-button color="primary">Create User</button>
+            <button routerLink="user" mat-flat-button color="primary">Create user</button>
         </div>
         <div class="usersListTab">
 
@@ -19,7 +19,17 @@
         </div>
     </mat-tab>
     <mat-tab label="Classes management">
-        Content 2
+        <div class="Btnbox">
+            <button routerLink="user" mat-flat-button color="primary">Create class</button>
+        </div>
+        <div class="usersListTab">.
+
+        <h2>Classes</h2><hr> 
+            <div class="usersList">
+                <app-class-list-item *ngFor="let class of classes" [data]="class"></app-class-list-item>
+                
+            </div>
+        </div>
     </mat-tab>
   </mat-tab-group>
   
