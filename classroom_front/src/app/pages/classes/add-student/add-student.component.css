@@ -1,0 +1,12 @@
+.dialogStudent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   
+    
+}
+
+.addSelector{
+    margin: 10px;
+}

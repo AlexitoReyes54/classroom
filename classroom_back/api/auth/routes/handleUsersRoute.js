@@ -5,7 +5,8 @@ const { getAllTeachers,
         getOneStudent,
         getOneTeacher,
         updateUser,
-        deleteUser
+        deleteUser,
+        getNotInClassStudents
     } = require('./../controllers/handleUsersController');
 const validateJwt = require('./../../../shared/middlewares/validateJwt')
 
@@ -15,5 +16,6 @@ router.get('/student/:id',validateJwt,getOneStudent)
 router.get('/teacher/:id',validateJwt,getOneTeacher)
 router.put('/user',validateJwt,updateUser)
 router.delete('/user',validateJwt,deleteUser)
+router.get('/not/:classId',validateJwt,getNotInClassStudents)
 
 module.exports = router;

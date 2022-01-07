@@ -4,6 +4,7 @@ import { CredentialStorageService } from 'src/app/credential-storage.service';
 import { classCard } from '../interfaces/classCard';
 import { Iclass } from '../interfaces/Iclass';
 import { student } from '../interfaces/student';
+import { rollInClass } from '../interfaces/rollInClass';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +16,9 @@ export class RestClassesService {
    }
 
   private updateToken(){
-    this.headers = new HttpHeaders().set('token', this.credentialStorage.getToken());
+    this.headers = new HttpHeaders()
+    .set('token', this.credentialStorage.getToken())
+    .set('role',this.credentialStorage.getCredentials().roleId.toString());
   }
 
   getStudentClasses(studentId:string | number){
@@ -35,5 +38,14 @@ export class RestClassesService {
      return this.http.get<student[]>(`http://localhost:3000/api/v1/classes/students/${classId}`,{headers:this.headers})
   }
 
+  getNotInClassStudets(classId: number | string){
+    this.updateToken()
+    return this.http.get<student[]>(`http://localhost:3000/api/v1/auth/not/${classId}`,{headers:this.headers})
+  }
+
+  addStudentToAClass(body:rollInClass){
+    this.updateToken()
+    return this.http.post(`http://localhost:3000/api/v1/session/add`,body,{headers:this.headers})
+  }
   
 }

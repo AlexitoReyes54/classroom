@@ -2,6 +2,7 @@ const User = require('./../../../shared/models/User')
 const asyncWrapper = require('./../../../shared/middlewares/async')
 const { roleGuard } = require('../../../shared/middlewares/verifyRole');
 const { sendProperResponse } = require('../../../shared/helpers/handleData')
+const {sequelize} = require('../../../db/dbConnection')
 
 const getAllTeachers = asyncWrapper(async (req, res) => {
     const teachers = await User.findAll({ where: { roleId:1 } })
@@ -9,8 +10,19 @@ const getAllTeachers = asyncWrapper(async (req, res) => {
 })
 
 const getAllStudents = asyncWrapper(async (req, res) => {
-    const students = await User.findAll({ where: { roleId:3 } })
+    const students = await User.findAll({ attributes: [['id','studentId'], 'name'],where: { roleId:3 } })
     sendProperResponse(res,students)
+})
+
+const getNotInClassStudents = asyncWrapper(async (req, res) => {
+   let query = `SELECT name,id as studentId 
+   FROM Users
+  WHERE NOT EXISTS (SELECT NULL FROM Classes_In_Progresses WHERE Users.id = 
+    Classes_In_Progresses.studentId and Classes_In_Progresses.classId 
+    = ${req.params.classId}) and Users.roleId = 3 `
+
+   const students = await sequelize.query(query);
+    sendProperResponse(res,students[0])
 })
 
 const getOneStudent = asyncWrapper(async (req, res) => {
@@ -56,5 +68,6 @@ module.exports = {
     getOneStudent,
     getOneTeacher,
     updateUser,
-    deleteUser
+    deleteUser,
+    getNotInClassStudents
 }

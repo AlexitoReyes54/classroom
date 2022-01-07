@@ -1,1 +1,10 @@
-<p>add-student works!</p>
+<div class="dialogStudent"> 
+<h2>Choose a student</h2>
+
+  <select class="addSelector" [(ngModel)]="selectedValue">
+    <option [value]="0" >-</option>
+      <option *ngFor="let student of students" [value]="student.studentId" >{{student.name}}</option>
+  </select>
+  <button mat-flat-button color="primary" (click)="rollStudent()">Add</button>  
+
+</div>

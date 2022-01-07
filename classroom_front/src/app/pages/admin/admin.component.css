@@ -1,0 +1,13 @@
+.usersListTab{
+    padding: 20px;
+}
+.Btnbox{
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 12px;
+}
+.usersList{
+    
+}

@@ -10,7 +10,8 @@ const {roleGuard} = require('./../../../shared/middlewares/verifyRole')
 */
 
 const addStudentToClass = roleGuard(async (req, res) => {
-    const checkInclass = await ClassesInProgress.create(req.body.checkInclass)
+    let {studentId,classId} = req.body
+    const checkInclass = await ClassesInProgress.create({studentId,classId})
     res.json({ data:checkInclass})
 },1)
 

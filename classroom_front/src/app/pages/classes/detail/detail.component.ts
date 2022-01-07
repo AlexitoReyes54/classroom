@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CredentialStorageService } from 'src/app/credential-storage.service';
 import { student } from '../interfaces/student';
 import { RestClassesService } from '../services/rest-classes.service';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatDialog, MAT_DIALOG_DATA,MatDialogRef} from '@angular/material/dialog';
+import { AddStudentComponent } from '../add-student/add-student.component';
+import { dialogbridge } from '../interfaces/dialogbridge';
+import { FormControl } from '@angular/forms';
+import { MatTable } from '@angular/material/table';
 
 
 @Component({
@@ -17,23 +21,32 @@ export class DetailComponent implements OnInit {
     public dialog: MatDialog,
     private activeRoute: ActivatedRoute,
     private restClasses:RestClassesService,
-    private credentialStorageSvc:CredentialStorageService ) { }
+    private credentialStorageSvc:CredentialStorageService,
+     ) { }
+     
   ngOnInit(): void {
+    this.dialogbridge.classId = this.clasId;
     this.verifyIfTeacher()
-    this.restClasses.getOneClassById(this.clasId)
-    .subscribe(res =>{
-      console.log(res.name);
-      this.setValues(res.name)
-    }
-    )
-    
+    this.getClassData()
   }
+
   className!:string;
   isATeacher:boolean = false;
   clasId:string = this.activeRoute.snapshot.params['classId'];
+  dialogbridge:dialogbridge = {
+    students:[],
+    classId:"" 
+  }
 
   setValues(className:string){
     this.className = className;
+  }
+
+  getClassData(){
+    this.restClasses.getOneClassById(this.clasId)
+    .subscribe(res =>{
+      this.setValues(res.name)
+    })
   }
 
   verifyIfTeacher(){
@@ -43,18 +56,29 @@ export class DetailComponent implements OnInit {
     }
   }
 
+
+
   getStudents(){ 
     this.restClasses.getOneClassStudents(this.clasId)
-    .subscribe(res => this.listOFStudents = res)
+    .subscribe(res => {
+      this.listOFStudents = res
+      
+      this.dialogbridge.students = res;
+    })
   }
 
   openDialog(){
-    const dialogRef = this.dialog.open(DetailComponent, {
-      width: '250px'
+    const dialogRef = this.dialog.open(AddStudentComponent, {
+      data:this.dialogbridge,
+      width: '450px',
+      height:'260px'
     });
+
+    
   }
 
   displayedColumns: string[] = ['studentId', 'name'];
   listOFStudents:student[] = [];
 
 }
+

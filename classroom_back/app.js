@@ -19,10 +19,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-app.use("/", function(req, res, next){
+app.use(function(req, res, next){
   console.log('pass');
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Methods', '*');
     res.header('Access-Control-Allow-Headers', '*');
     next();
   });

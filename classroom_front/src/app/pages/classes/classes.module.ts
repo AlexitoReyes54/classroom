@@ -13,6 +13,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { AppModule } from 'src/app/app.module';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddStudentComponent } from './add-student/add-student.component';
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { AddStudentComponent } from './add-student/add-student.component';
     MatTabsModule,
     MatTableModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    MatSelectModule,
+    ReactiveFormsModule
     
   ],
   exports:[]

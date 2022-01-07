@@ -1,8 +1,7 @@
 
 const sendProperResponse = (res,data) => {
     if (data) {
-        console.log("zero");
-        res.status(201).json({ data })
+        res.status(201).json( data )
     }else{
         res.status(404).json({data:'error'})
     }

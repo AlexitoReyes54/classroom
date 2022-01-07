@@ -1,1 +1,24 @@
-<p>admin works!</p>
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Users management">
+        <div class="Btnbox">
+            <button mat-flat-button color="primary">Create User</button>
+        </div>
+        <div class="usersListTab">
+
+            <h2>Teachers</h2><hr>
+            <div class="usersList">
+                <app-user-list-item></app-user-list-item>
+            </div>
+
+            <h2>Students</h2><hr>
+            <div class="usersList">
+
+            </div>
+            
+        </div>
+    </mat-tab>
+    <mat-tab label="Classes management">
+        Content 2
+    </mat-tab>
+  </mat-tab-group>
+  

@@ -12,7 +12,6 @@
 
             </button>
         </div>
-        
         <table mat-table [dataSource]="listOFStudents" class="mat-elevation-z8">
           
             <ng-container matColumnDef="studentId">
@@ -28,10 +27,6 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          
-          
-
-          
           
     </mat-tab>
   </mat-tab-group>
