@@ -8,7 +8,7 @@ const roleGuard = (fn,role) => {
             await fn(req, res, next)
        }else{
            res.status(403).json({
-               data:'permison deinied'
+               data:' deinied'
            })
        }
 
