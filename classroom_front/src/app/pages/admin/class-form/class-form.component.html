@@ -1,1 +1,14 @@
-<p>class-form works!</p>
+<form [formGroup]="classForm" (ngSubmit)="onSubmit()">
+
+    <label for="Name">Name:</label>
+    <input id="Name" type="text" formControlName="name">
+
+    <select  id="roleId"  formControlName="teacherId">
+        <option value="0">-</option>
+        <option *ngFor="let teacher of teachers" value="{{teacher.teacherId}}">{{teacher.name}}</option>
+    </select>
+  
+    
+    <button mat-flat-button color="primary">Send data</button>
+  
+  </form>

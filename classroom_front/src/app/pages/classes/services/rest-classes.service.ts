@@ -27,6 +27,12 @@ export class RestClassesService {
      
   }
 
+  getTeacherClasses(studentId:string | number){
+    this.updateToken()
+     return this.http.get<classCard[]>(`http://localhost:3000/api/v1/classes/teacher/${studentId}`,{headers:this.headers})
+     
+  }
+
   getOneClassById(classId: number | string){
     this.updateToken()
      return this.http.get<Iclass>(`http://localhost:3000/api/v1/classes/class/${classId}`,{headers:this.headers})

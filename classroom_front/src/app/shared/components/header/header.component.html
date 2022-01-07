@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" >
     <span>Classroom</span>
 
       <span class="example-spacer"></span>
@@ -9,7 +9,7 @@
 
       <mat-menu #menu="matMenu">
 
-        <button mat-menu-item routerLink="home">
+        <button mat-menu-item  routerLink="home">
           <mat-icon>home</mat-icon>
           <span>Home</span>
         </button>
@@ -19,7 +19,7 @@
           <span>Admin management</span>
         </button>
 
-        <button mat-menu-item routerLink="auth">
+        <button mat-menu-item  (click)="singOut()">
           <mat-icon>cancel</mat-icon>
           <span>Sign-out</span>
         </button>

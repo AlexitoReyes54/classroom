@@ -18,5 +18,9 @@ export class CredentialStorageService {
   getToken(){
     return this.getCredentials().token
   }
+
+  clearCredentials(){
+    localStorage.clear()
+  }
   
 }

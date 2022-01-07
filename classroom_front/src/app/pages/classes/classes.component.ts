@@ -15,18 +15,32 @@ export class ClassesComponent implements OnInit {
 
   ngOnInit(): void {
     //this only works if is an student but not for teachers
+
+    this.loadCards()
+  }
+
+  classes!:classCard[];
+
+  getStudentClasses(){
     this.restClasses.getStudentClasses(this.credentialStorageSvc.getCredentials().id)
     .subscribe(res=> this.classes = res
     )
-    console.log(this.classes);
-    
   }
-  name = ""
 
-  classes!:classCard[];
+  getTeacherClasses(){
+    this.restClasses.getTeacherClasses(this.credentialStorageSvc.getCredentials().id)
+    .subscribe(res => {
+      console.log(res);
+      
+      this.classes = res})
+  }
   
-  loadCards(classes:classCard[]){
-
+  loadCards(){
+    if (this.credentialStorageSvc.getCredentials().roleId ==  1) {
+      this.getTeacherClasses()
+    }else if((this.credentialStorageSvc.getCredentials().roleId ==  3)){
+      this.getStudentClasses()
+    }
   }
  
 }

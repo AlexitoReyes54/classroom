@@ -4,7 +4,8 @@ const {roleGuard} = require('./../../../shared/middlewares/verifyRole')
 const {sequelize} = require('../../../db/dbConnection')
 
 const createClass = roleGuard(async (req, res) => {
-    const classSession = await Class.create(req.body.class)
+    let {name, teacherId} = req.body
+    const classSession = await Class.create({name, teacherId})
     res.json(classSession)
 },2)
 
